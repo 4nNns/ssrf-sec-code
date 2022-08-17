@@ -1,5 +1,6 @@
 package com.ha0l.ssrfseccode.utils;
 
+import com.squareup.okhttp.OkHttpClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -8,6 +9,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.imageio.ImageIO;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -77,6 +79,22 @@ public class HttpUtils {
         } catch (IOException e) {
             logger.error(e.getMessage());
             return e.getMessage();
+        }
+    }
+
+    public static String okhttp(String url) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        // client.setFollowRedirects(false);
+        com.squareup.okhttp.Request ok_http = new com.squareup.okhttp.Request.Builder().url(url).build();
+        return client.newCall(ok_http).execute().body().string();
+    }
+
+    public static void imageIO(String url) {
+        try {
+            URL u = new URL(url);
+            ImageIO.read(u); // send request
+        } catch (IOException e) {
+            logger.error(e.getMessage());
         }
     }
 }
