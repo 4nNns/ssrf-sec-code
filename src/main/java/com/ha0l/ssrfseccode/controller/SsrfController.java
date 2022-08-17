@@ -28,12 +28,20 @@ public class SsrfController {
 
     /**
      * @vulnPath：
-     * 1）<a href="http://localhost:8788/ssrf/httpClientVuln?url=file:///etc/passwd">...</a>
-     * 2）<a href="http://localhost:8788/ssrf/httpClientVuln?url=http://baidu.com">...</a>
+     * 1）<a href="http://localhost:8788/ssrf/httpClientVuln?url=http://baidu.com">...</a>
      */
     @GetMapping("/httpClientVuln")
-    public String httpClientVuln(String url) {
+    public String httpClientVuln(@RequestParam String url) {
         return HttpUtils.HttpClient(url);
+    }
+
+    /**
+     * @vulnPath：
+     * 1）<a href="http://localhost:8788/ssrf/httpUrlConnectionVuln?url=http://baidu.com">...</a>
+     */
+    @GetMapping("/httpUrlConnectionVuln")
+    public String httpUrlConnectionVuln(@RequestParam String url) {
+        return HttpUtils.HttpURLConnection(url);
     }
 
 
