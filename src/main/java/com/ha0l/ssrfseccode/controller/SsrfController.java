@@ -61,5 +61,9 @@ public class SsrfController {
         return "ImageIO ssrf test";
     }
 
+    @GetMapping("/requestVuln")
+    public String requestVuln(@RequestParam String url) {
+        return HttpUtils.request(url);
+    }
 
 }

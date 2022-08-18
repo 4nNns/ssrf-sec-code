@@ -3,6 +3,7 @@ package com.ha0l.ssrfseccode.utils;
 import com.squareup.okhttp.OkHttpClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.fluent.Request;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -17,6 +18,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+
 
 /**
  * @author ha0
@@ -95,6 +97,14 @@ public class HttpUtils {
             ImageIO.read(u); // send request
         } catch (IOException e) {
             logger.error(e.getMessage());
+        }
+    }
+
+    public static String request(String url) {
+        try {
+            return Request.Get(url).execute().returnContent().toString();
+        } catch (Exception e) {
+            return e.getMessage();
         }
     }
 }
