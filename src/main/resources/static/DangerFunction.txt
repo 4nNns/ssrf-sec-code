@@ -1,0 +1,13 @@
+
+
+
+SSRF危险函数汇总：
+HttpURLConnection. getInputStream
+URLConnection. getInputStream
+Request.Get. execute
+Request.Post. execute
+URL.openStream
+ImageIO.read
+OkHttpClient.newCall.execute
+HttpClients. execute
+HttpClient.execute
