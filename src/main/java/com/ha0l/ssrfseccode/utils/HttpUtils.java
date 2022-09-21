@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
+import javax.sql.DataSource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +19,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import static java.lang.System.out;
 
 
 /**
@@ -107,4 +113,20 @@ public class HttpUtils {
             return e.getMessage();
         }
     }
-}
+
+    public static String connection(String url, String username, String passwd) throws ClassNotFoundException {
+        String driver = "com.mysql.cj.jdbc.Driver";
+        StringBuilder result = new StringBuilder();
+        try {
+            Class.forName(driver);
+            Connection con = DriverManager.getConnection(url, username, passwd);
+            if (!con.isClosed()) {
+                out.println("Connect to database successfully.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return "Connect to database successfully.";
+    }
+
+    }

@@ -1,7 +1,7 @@
-package com.ha0l.ssrfseccode.utils;
-
-public class SafeHttpUtils {
-
+//package com.ha0l.ssrfseccode.utils;
+//
+//public class SafeHttpUtils {
+//
 //    String url = request.getParameter("url");
 //if (!SSRFHostCheck(url)) {
 //        System.out.println("warning!!! illegal url:" + url);
@@ -40,4 +40,5 @@ public class SafeHttpUtils {
 //            return false;
 //        }
 //    }
-}
+//}
+//

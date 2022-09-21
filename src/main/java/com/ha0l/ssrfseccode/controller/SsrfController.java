@@ -1,12 +1,11 @@
 package com.ha0l.ssrfseccode.controller;
 
+import com.ha0l.ssrfseccode.controller.form.SQLForm;
 import com.ha0l.ssrfseccode.utils.HttpUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 
 /**
@@ -64,6 +63,13 @@ public class SsrfController {
     @GetMapping("/requestVuln")
     public String requestVuln(@RequestParam String url) {
         return HttpUtils.request(url);
+    }
+
+    @GetMapping("/sqlSsrf")
+    public String sqlSsrfVuln(@RequestParam String username,
+                               @RequestParam String url,
+                               @RequestParam String passwd) throws ClassNotFoundException {
+        return HttpUtils.connection(url, username, passwd);
     }
 
 }
